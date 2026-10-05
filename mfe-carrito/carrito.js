@@ -2,6 +2,7 @@
 // Contrato: window.renderCarrito(idContenedor) / window.unmountCarrito(idContenedor)
 // Escucha:  'carrito:agregar'      { id, nombre, precio }
 // Publica:  'carrito:actualizado'  { cantidad, total }
+//           'pedido:confirmado'    { id, fecha, items, total }   (reto 1)
 (function () {
   const VERSION = '1.0.0';
   const pesos = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
@@ -84,6 +85,15 @@
       pintar();
     } else if (e.target.matches('.car-confirmar')) {
       mensaje = 'Pedido confirmado por ' + pesos.format(total()) + '. ¡Gracias!';
+      // Reto 1: avisamos que hay un pedido nuevo; no sabemos quién lo escucha
+      window.dispatchEvent(new CustomEvent('pedido:confirmado', {
+        detail: {
+          id: Date.now(),
+          fecha: new Date().toISOString(),
+          items: items.map(it => ({ id: it.id, nombre: it.nombre, precio: it.precio, cantidad: it.cantidad })),
+          total: total()
+        }
+      }));
       items.length = 0;
       publicarEstado();
       pintar();

@@ -13,6 +13,12 @@ window.REGISTRO_MFE = {
     tipo: 'funcion',
     precargar: true            // debe escuchar eventos aunque no esté en pantalla
   },
+  '/pedidos': {
+    nombre: 'Pedidos',
+    url: 'http://localhost:8084/pedidos.js',
+    tipo: 'funcion',           // expone window.renderPedidos / window.unmountPedidos
+    precargar: true            // escucha 'pedido:confirmado' aunque no esté en pantalla
+  },
   '/perfil': {
     nombre: 'Perfil',
     url: 'http://localhost:8083/perfil.js',

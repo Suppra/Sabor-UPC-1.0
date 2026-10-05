@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>mfe-pedidos (modo independiente)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #fafafa; }
+    .banda { background: #fff3c4; padding: 8px 12px; margin-bottom: 16px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="banda">
+    Modo independiente: simulamos el evento del carrito con este botón.
+    <button onclick="simular()">Simular pedido confirmado</button>
+  </div>
+  <div id="raiz-local"></div>
+
+  <script src="pedidos.js"></script>
+  <script>
+    function simular() {
+      window.dispatchEvent(new CustomEvent('pedido:confirmado', { detail: {
+        id: Date.now(), fecha: new Date().toISOString(), total: 12500,
+        items: [{ id: 101, nombre: 'Plato de prueba A', precio: 10000, cantidad: 1 },
+                { id: 102, nombre: 'Plato de prueba B', precio: 2500, cantidad: 1 }]
+      } }));
+    }
+    window.renderPedidos('raiz-local');
+  </script>
+</body>
+</html>
