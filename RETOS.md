@@ -1,6 +1,6 @@
 # Retos opcionales (sección 10)
 
-Cada reto está en su propio commit, sobre la versión base (etiqueta `base`), para poder ver con
+Cada reto está en su propio commit, sobre la versión base (primer commit, `42334db`), para poder ver con
 `git diff` exactamente qué cambió en cada uno. Todos se verifican en `npm test` (pruebas 10 a 14).
 
 | # | Reto | Commit | Qué tocó |
@@ -29,7 +29,7 @@ Cada reto está en su propio commit, sobre la versión base (etiqueta `base`), p
 
 `mfe-carrito/carrito.js` (v2.0.0) ahora define `<mfe-carrito>` con Shadow DOM y en el registro pasa de
 `tipo: "funcion"` a `tipo: "webcomponent"`. Escucha y publica exactamente los mismos eventos, así que
-`git diff base -- mfe-catalogo` en el commit del reto 2 está vacío. Detalles:
+`git diff 42334db f6d6e3b -- mfe-catalogo` en el commit del reto 2 está vacío. Detalles:
 
 - El estado (`items`) vive en el módulo y no en el elemento, para que sobreviva cuando el contenedor retira
   la etiqueta de la página (igual que antes vivía en el closure).

@@ -1,6 +1,6 @@
 # Preguntas de reflexión
 
-Respuestas sobre la versión base del taller (etiqueta `base`). Los retos opcionales están en [RETOS.md](RETOS.md).
+Respuestas sobre la versión base del taller (primer commit, `42334db`). Los retos opcionales están en [RETOS.md](RETOS.md).
 
 ![SaborUPC funcionando](capturas/3-perfil.png)
 

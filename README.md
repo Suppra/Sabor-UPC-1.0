@@ -60,7 +60,7 @@ contenedor, el carrito ni el perfil.
 
 Los cinco retos de la sección 10 están resueltos, cada uno en su propio commit. La explicación y el
 resultado del experimento del reto 5 están en [`RETOS.md`](RETOS.md). La versión base del taller,
-sin retos, queda en la etiqueta `git checkout base`.
+sin retos, es el primer commit (`git checkout 42334db`).
 
 ## Entregables
 
