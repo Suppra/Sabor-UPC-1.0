@@ -10,7 +10,8 @@ window.REGISTRO_MFE = {
   '/carrito': {
     nombre: 'Carrito',
     url: 'http://localhost:8082/carrito.js',
-    tipo: 'funcion',
+    tipo: 'webcomponent',      // reto 2: define la etiqueta <mfe-carrito>
+    etiqueta: 'mfe-carrito',
     precargar: true            // debe escuchar eventos aunque no esté en pantalla
   },
   '/pedidos': {

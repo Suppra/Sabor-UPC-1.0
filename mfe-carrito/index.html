@@ -14,7 +14,7 @@
     <button onclick="simular(101, 'Plato de prueba A', 10000)">Simular plato A</button>
     <button onclick="simular(102, 'Plato de prueba B', 2500)">Simular plato B</button>
   </div>
-  <div id="raiz-local"></div>
+  <mfe-carrito></mfe-carrito>
   <p id="estado"></p>
 
   <script src="carrito.js"></script>
@@ -25,7 +25,6 @@
     window.addEventListener('carrito:actualizado', function (e) {
       document.getElementById('estado').textContent = 'carrito:actualizado → ' + JSON.stringify(e.detail);
     });
-    window.renderCarrito('raiz-local');
   </script>
 </body>
 </html>
