@@ -82,11 +82,27 @@
     document.getElementById('app-saludo').textContent = 'Hola, ' + e.detail.nombre;
   });
 
-  // 5. Arranque: precargar los micro frontends que lo requieran y navegar
-  Object.values(window.REGISTRO_MFE)
-    .filter(function (m) { return m.precargar; })
-    .forEach(function (m) { cargarScript(m.url).catch(console.error); });
+  // 5. Arranque: leer el registro (reto 3), precargar lo que lo requiera y navegar
+  async function cargarRegistro() {
+    // registro.json es configuración en tiempo de ejecución: se puede cambiar
+    // (por ejemplo, la URL de un micro frontend) sin tocar este código.
+    const respuesta = await fetch('registro.json', { cache: 'no-store' });
+    if (!respuesta.ok) throw new Error('registro.json respondió ' + respuesta.status);
+    return respuesta.json();
+  }
 
-  window.addEventListener('hashchange', navegar);
-  navegar();
+  cargarRegistro()
+    .then(function (registro) {
+      window.REGISTRO_MFE = registro;
+      Object.values(registro)
+        .filter(function (m) { return m.precargar; })
+        .forEach(function (m) { cargarScript(m.url).catch(console.error); });
+
+      window.addEventListener('hashchange', navegar);
+      navegar();
+    })
+    .catch(function (e) {
+      raiz.innerHTML = '<p class="app-error">No se pudo leer el registro de micro frontends.</p>';
+      console.error(e);
+    });
 })();
