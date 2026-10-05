@@ -3,15 +3,27 @@
 // Escucha:  'pedido:confirmado' { id, fecha, items, total }
 (function () {
   const VERSION = '1.0.0';
+
+  // Reto 4: tokens del sistema de diseño compartido, servidos desde otro origen.
+  // Se insertan una sola vez en la página (el id es común a todos los equipos).
+  // Cada var() lleva un valor por defecto: si el servidor de tokens cae, nada se rompe.
+  (function asegurarTokens() {
+    if (document.getElementById('tokens-saborupc')) return;
+    const link = document.createElement('link');
+    link.id = 'tokens-saborupc';
+    link.rel = 'stylesheet';
+    link.href = 'http://localhost:8085/tokens.css';
+    document.head.appendChild(link);
+  })();
   const pesos = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
   const hora = new Intl.DateTimeFormat('es-CO', { dateStyle: 'short', timeStyle: 'short' });
 
   // Estilos propios con prefijo "ped-"
   const CSS = `
-    .ped-titulo { color: #0b4f8a; margin: 0 0 4px; }
-    .ped-version { font-size: 12px; color: #888; }
+    .ped-titulo { color: var(--color-primario, #0b4f8a); margin: 0 0 4px; }
+    .ped-version { font-size: 12px; color: var(--color-texto-suave, #888); }
     .ped-lista { list-style: none; padding: 0; margin: 16px 0; }
-    .ped-pedido { background: #fff; border: 1px solid #dde3ea; border-radius: 6px; padding: 16px; margin-bottom: 12px; }
+    .ped-pedido { background: #fff; border: 1px solid var(--color-borde, #dde3ea); border-radius: var(--radio-tarjeta, 6px); padding: 16px; margin-bottom: 12px; }
     .ped-cabecera { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px; }
     .ped-fecha { font-size: 13px; color: #666; font-weight: normal; }
     .ped-detalle { margin: 0; padding-left: 18px; font-size: 14px; }

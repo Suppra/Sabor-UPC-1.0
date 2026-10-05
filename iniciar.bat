@@ -6,4 +6,5 @@ start "mfe-catalogo 8081" cmd /k "cd mfe-catalogo && py -m http.server 8081"
 start "mfe-carrito 8082"  cmd /k "cd mfe-carrito && py -m http.server 8082"
 start "mfe-perfil 8083"   cmd /k "cd mfe-perfil && py -m http.server 8083"
 start "mfe-pedidos 8084"  cmd /k "cd mfe-pedidos && py -m http.server 8084"
+start "design-system 8085" cmd /k "cd design-system && py -m http.server 8085"
 echo Abra http://localhost:8080

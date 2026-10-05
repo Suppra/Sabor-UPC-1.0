@@ -3,6 +3,18 @@
 // Publica:  'usuario:cambio' { nombre }
 (function () {
   const VERSION = '1.0.0';
+
+  // Reto 4: tokens del sistema de diseño compartido, servidos desde otro origen.
+  // Se insertan una sola vez en la página (el id es común a todos los equipos).
+  // Cada var() lleva un valor por defecto: si el servidor de tokens cae, nada se rompe.
+  (function asegurarTokens() {
+    if (document.getElementById('tokens-saborupc')) return;
+    const link = document.createElement('link');
+    link.id = 'tokens-saborupc';
+    link.rel = 'stylesheet';
+    link.href = 'http://localhost:8085/tokens.css';
+    document.head.appendChild(link);
+  })();
   const datos = { nombre: '', ciudad: 'Valledupar' };  // estado propio
 
   class MfePerfil extends HTMLElement {
@@ -13,13 +25,13 @@
       sombra.innerHTML = `
         <style>
           :host { display: block; }
-          h2 { color: #1b7a3e; margin: 0 0 4px; }
-          .version { font-size: 12px; color: #888; }
-          form { background: #fff; border: 1px solid #dde3ea; border-radius: 6px; padding: 20px; margin-top: 16px; max-width: 420px; }
+          h2 { color: var(--color-acento-oscuro, #1b7a3e); margin: 0 0 4px; }
+          .version { font-size: 12px; color: var(--color-texto-suave, #888); }
+          form { background: #fff; border: 1px solid var(--color-borde, #dde3ea); border-radius: var(--radio-tarjeta, 6px); padding: 20px; margin-top: 16px; max-width: 420px; }
           label { display: block; margin: 12px 0 4px; font-size: 14px; }
-          input { width: 100%; padding: 8px; border: 1px solid #bbb; border-radius: 4px; box-sizing: border-box; }
-          button { margin-top: 16px; background: #1b7a3e; color: #fff; border: 0; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
-          .ok { color: #1b7a3e; font-size: 14px; }
+          input { width: 100%; padding: 8px; border: 1px solid #bbb; border-radius: var(--radio, 4px); box-sizing: border-box; }
+          button { margin-top: 16px; background: var(--color-acento-oscuro, #1b7a3e); color: #fff; border: 0; padding: 8px 16px; border-radius: var(--radio, 4px); cursor: pointer; }
+          .ok { color: var(--color-acento-oscuro, #1b7a3e); font-size: 14px; }
         </style>
         <h2>Mi perfil</h2>
         <span class="version">mfe-perfil v${VERSION} · Web Component</span>

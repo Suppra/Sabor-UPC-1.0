@@ -4,6 +4,18 @@
 (function () {
   const VERSION = '1.0.0';
 
+  // Reto 4: tokens del sistema de diseño compartido, servidos desde otro origen.
+  // Se insertan una sola vez en la página (el id es común a todos los equipos).
+  // Cada var() lleva un valor por defecto: si el servidor de tokens cae, nada se rompe.
+  (function asegurarTokens() {
+    if (document.getElementById('tokens-saborupc')) return;
+    const link = document.createElement('link');
+    link.id = 'tokens-saborupc';
+    link.rel = 'stylesheet';
+    link.href = 'http://localhost:8085/tokens.css';
+    document.head.appendChild(link);
+  })();
+
   const PLATOS = [
     { id: 1, nombre: 'Chivo guisado',        precio: 28000, categoria: 'Plato fuerte' },
     { id: 2, nombre: 'Arroz de payaso',      precio: 22000, categoria: 'Plato fuerte' },
@@ -19,16 +31,16 @@
 
   // Estilos propios con prefijo "cat-" para no chocar con otros equipos
   const CSS = `
-    .cat-titulo { color: #0b4f8a; margin: 0 0 4px; }
-    .cat-version { font-size: 12px; color: #888; }
-    .cat-buscar { width: 100%; padding: 10px; margin: 16px 0; border: 1px solid #bbb; border-radius: 4px; font-size: 15px; }
+    .cat-titulo { color: var(--color-primario, #0b4f8a); margin: 0 0 4px; }
+    .cat-version { font-size: 12px; color: var(--color-texto-suave, #888); }
+    .cat-buscar { width: 100%; padding: 10px; margin: 16px 0; border: 1px solid #bbb; border-radius: var(--radio, 4px); font-size: 15px; }
     .cat-grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
-    .cat-tarjeta { background: #fff; border: 1px solid #dde3ea; border-radius: 6px; padding: 16px; }
-    .cat-categoria { font-size: 12px; color: #3e9f3a; text-transform: uppercase; }
+    .cat-tarjeta { background: #fff; border: 1px solid var(--color-borde, #dde3ea); border-radius: var(--radio-tarjeta, 6px); padding: 16px; }
+    .cat-categoria { font-size: 12px; color: var(--color-acento, #3e9f3a); text-transform: uppercase; }
     .cat-nombre { font-size: 17px; margin: 6px 0; }
     .cat-precio { font-weight: bold; margin-bottom: 12px; }
-    .cat-boton { background: #3e9f3a; color: #fff; border: 0; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
-    .cat-boton:hover { background: #1b7a3e; }
+    .cat-boton { background: var(--color-acento, #3e9f3a); color: #fff; border: 0; padding: 8px 12px; border-radius: var(--radio, 4px); cursor: pointer; }
+    .cat-boton:hover { background: var(--color-acento-oscuro, #1b7a3e); }
     .cat-vacio { color: #777; }
   `;
 

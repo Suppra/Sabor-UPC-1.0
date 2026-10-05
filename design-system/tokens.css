@@ -1,0 +1,16 @@
+/* Sistema de diseño de SaborUPC (equipo "Diseño") — reto opcional 4
+   Servido desde su propio origen: http://localhost:8085/tokens.css
+   Solo define variables (tokens). No contiene clases ni reglas sobre etiquetas,
+   así que no puede romper el marcado de ningún equipo.
+   Las variables CSS se heredan a través del Shadow DOM, por eso también
+   llegan a <mfe-perfil> y <mfe-carrito>. */
+:root {
+  --color-primario: #0b4f8a;
+  --color-acento: #3e9f3a;
+  --color-acento-oscuro: #1b7a3e;
+  --color-peligro: #c0392b;
+  --color-borde: #dde3ea;
+  --color-texto-suave: #888;
+  --radio: 4px;
+  --radio-tarjeta: 6px;
+}
