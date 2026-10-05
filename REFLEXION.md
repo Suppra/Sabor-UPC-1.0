@@ -1,5 +1,7 @@
 # Preguntas de reflexión
 
+Respuestas sobre la versión base del taller (etiqueta `base`). Los retos opcionales están en [RETOS.md](RETOS.md).
+
 ![SaborUPC funcionando](capturas/3-perfil.png)
 
 **1. ¿Qué información necesita el contenedor sobre cada micro frontend? ¿Qué no necesita saber?**
